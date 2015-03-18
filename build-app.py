@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# encoding=utf8  
 # Compresses the files for one game into a single JavaScript file.
 #
 # Copyright 2013 Google Inc.
@@ -28,7 +29,9 @@
 # cycle since there is no need to rebuild or recompile, just reload.
 
 import os.path, re, subprocess, sys
-
+from imp import reload
+reload(sys)
+sys.setdefaultencoding('utf8')
 # Given a user's language, which of the available Blockly core languagues
 # should be used.
 CORE_LANGUAGE_MAP = {
@@ -81,7 +84,8 @@ WARNING = '// Automatically generated file.  Do not edit!\n'
 
 
 def main(name, lang):
-  if CORE_LANGUAGE_MAP.has_key(lang):
+  #if CORE_LANGUAGE_MAP.has_key(lang):
+  if lang in CORE_LANGUAGE_MAP:
     core_language = CORE_LANGUAGE_MAP.get(lang)
   else:
     core_language = CORE_LANGUAGE_MAP.get('en')
@@ -96,7 +100,7 @@ def main(name, lang):
 
 def write_uncompressed(name, lang):
   print('\n%s - %s - uncompressed:' % (name.title(), lang))
-  cmd = ['closure-library-bin-read-only/build/closurebuilder.py',
+  cmd = [sys.executable,'closure-library-bin-read-only/build/closurebuilder.py',
       '--root=appengine/js-read-only/',
       '--root=appengine/generated/%s/' % lang,
       '--root=appengine/js/',
@@ -110,7 +114,7 @@ def write_uncompressed(name, lang):
   proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
   files = proc.stdout.readlines()
 
-  prefix = 'appengine/'
+  prefix = 'appengine'
   srcs = []
   for file in files:
     file = file.strip()
@@ -177,7 +181,7 @@ def trim_licence(code):
 
 def write_compressed(name, lang):
   print('\n%s - %s - compressed:' % (name.title(), lang))
-  cmd = ['closure-library-bin-read-only/build/closurebuilder.py',
+  cmd = [sys.executable, 'closure-library-bin-read-only/build/closurebuilder.py',
       '--root=appengine/js-read-only/',
       '--root=appengine/generated/%s/' % lang,
       '--root=appengine/js/',
@@ -209,3 +213,4 @@ if __name__ == '__main__':
     print('Format: %s <appname> <language>' % sys.argv[0])
     sys.exit(2)
   main(sys.argv[1], sys.argv[2])
+
