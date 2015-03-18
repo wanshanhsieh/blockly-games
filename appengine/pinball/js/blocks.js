@@ -6,10 +6,11 @@
  * 
  * @author weifen@mijotech.net
  */
-'use strict';
+'use strict'; /* var only used in this name space */
 
 goog.provide('Pinball.Blocks');
 
+/* use blocky block */
 goog.require('Blockly');
 goog.require('BlocklyGames');
 goog.require('Blockly.JavaScript');
