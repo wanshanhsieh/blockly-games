@@ -28,7 +28,7 @@
 # been renamed.  The uncompressed file also allows for a faster developement
 # cycle since there is no need to rebuild or recompile, just reload.
 
-import os.path, re, subprocess, sys
+import os.path, re, subprocess, sys, platform
 from imp import reload
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -118,7 +118,7 @@ def write_uncompressed(name, lang):
     prefix = 'appengine'
   else :
     prefix = 'appengine/'
-    
+
   srcs = []
   for file in files:
     file = file.strip()
