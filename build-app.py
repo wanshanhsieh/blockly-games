@@ -114,7 +114,11 @@ def write_uncompressed(name, lang):
   proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
   files = proc.stdout.readlines()
 
-  prefix = 'appengine'
+  if platform.system() is "Windows" :
+    prefix = 'appengine'
+  else :
+    prefix = 'appengine/'
+    
   srcs = []
   for file in files:
     file = file.strip()
