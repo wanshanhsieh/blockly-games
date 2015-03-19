@@ -115,7 +115,7 @@ def write_uncompressed(name, lang):
   files = proc.stdout.readlines()
 
   if platform.system() is "Windows" :
-    prefix = 'appengine'
+    prefix = 'appengine\\'
   else :
     prefix = 'appengine/'
 
@@ -126,7 +126,13 @@ def write_uncompressed(name, lang):
       file = file[len(prefix):]
     else:
       raise(Exception('"%s" is not in "%s".' % (file, prefix)))
-    srcs.append('"%s"' % file)
+
+    if platform.system() is "Windows" :
+      srcs.append(('"%s"' % file).replace("\\","\\\\"))
+    else :
+      srcs.append('"%s"' % file)
+
+
   f = open('appengine/%s/generated/%s/uncompressed.js' % (name, lang), 'w')
   f.write("""%s
 (function() {
