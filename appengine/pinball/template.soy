@@ -25,17 +25,19 @@
  * Web page structure.
  */
 {template .start}
-  {call .messages /}
+  {call .messages /} // call function
   <table id="header" width="100%">
     <tr>
       <td valign="bottom">
-        <h1>
-          {call BlocklyGames.soy.titleSpan}
-            {param appName}
-              {msg meaning="Games.pinball" desc="IBID"}Pinball{/msg}
-            {/param}
-          {/call}
-        </h1>
+		<div style="display:none">
+			<h1>
+			 {call BlocklyGames.soy.titleSpan}
+				{param appName}
+				{msg meaning="Games.pinball" desc="IBID"}Pinball{/msg}
+				{/param}
+			 {/call}
+			</h1>
+		</div>
       </td>
       <td class="farSide">
         <select id="languageMenu"></select>
