@@ -1,0 +1,117 @@
+/*******************************
+            Global
+*******************************/
+
+html {
+  font-color: #000080;
+  background-color: #B0E0E6;
+}
+
+
+/*******************************
+            Global
+*******************************/
+
+#home .menu .right.menu > .mobile.item {
+  display: none;
+}
+
+/*--------------
+    Masthead
+---------------*/
+
+#home .masthead {
+  background-color: #B0E0E6;
+  margin: 0em;
+  padding: 5rem 0rem;
+  font-color: #000080;
+}
+#home .masthead .column {
+  position: relative;
+  font-size: 20px;
+  margin: -1.5em 0em 0em 15em;
+}
+
+/*--------------
+    Ribbons
+---------------*/
+
+#home .vertical.segment {
+  padding: 0rem 0rem;
+}
+
+#home .feature.segment {
+  margin: 0em;
+  padding: 0rem 0.5rem 0rem 0.5rem;
+}
+#home .feature.segment p {
+  min-height: 50px;
+}
+
+/*--------------
+    Footer
+---------------*/
+
+#home .footer.segment {
+  position: relative;
+  background-color: #B0E0E6;
+  font-size: 16px;
+  font-color: #000080;
+  padding: 3rem 0rem;
+}
+
+
+/*******************************
+          Responsive
+*******************************/
+
+/* Mobile Only */
+@media only screen and (max-width : 768px) {
+
+  #home .menu .right.menu > .item {
+    display: none;
+  }
+
+  #home .menu .right.menu > .mobile.item {
+    display: block;
+  }
+  #home .menu .right.menu > .mobile.item .menu {
+    left: auto;
+    right: 0em;
+  }
+
+  #home h1 {
+    font-size: 1.5em;
+  }
+  #home .masthead.segment .information {
+    margin-left: 170px;
+  }
+
+  #home .masthead.segment .image {
+    width: 170px;
+  }
+
+  #home .masthead.segment .button {
+    font-size: 1rem;
+  }
+
+  #home .overview .divided.grid .header .icon {
+    font-size: 1.5em;
+  }
+
+  #home .overview .divided.grid .header + p {
+    min-height: 0px;
+  }
+
+  #home .masthead.segment .column {
+    font-size: 0.7rem;
+  }
+
+  #home .masthead.segment .column p {
+    display: none;
+  }
+
+  #home .selection.list .right.floated {
+    display: none;
+  }
+}
