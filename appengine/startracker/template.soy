@@ -1,0 +1,308 @@
+{namespace Startracker.soy}
+
+/**
+ * This is a Closure Template.
+ *
+ * To regenerate just English, run:
+ *   make startracker-en
+ *
+ * To regenerate all languages, run:
+ *   make languages
+ */
+
+/**
+ * Translated messages for use in JavaScript.
+ */
+{template .messages}
+  <div style="display: none">
+     Startracker is an arduino-based educational toy!    
+  </div>
+{/template}
+
+
+/**
+ * Web page structure.
+ */
+{template .start}
+  {call .messages /} // call function
+    <table id="header" width="100%">
+      <tr>
+        <td valign="bottom">
+		      <h5> 
+			    {call BlocklyGames.soy.titleSpan} 
+				  {param appName}
+				  {msg meaning="Games.startracker" desc="IBID"}{/msg}
+				  {/param}
+			    {/call} 
+			    </h5>
+        </td>
+        <td class="farSide">
+        <select id="languageMenu"></select>
+        &nbsp;
+        </td>
+      </tr>
+    </table>
+
+  {call .toolbox /}
+  <div id="blockly"></div>
+  
+
+  {call BlocklyGames.soy.dialog /}
+  <div id="help" class="dialogHiddenContent">
+    <div style="padding-bottom: 0.7ex">
+      {msg meaning="Startracker.helpText"
+           desc="Instructions for the startracker."}
+        If you like startracker, please support us in our facebook fan page. 
+      {/msg}
+    </div>
+    <iframe style="height: 300px; width: 100%; border: none;" src="startracker/startracker_blockly.html?lang={$ij.lang}"></iframe> 
+    {call BlocklyGames.soy.ok /}
+  </div>
+  <div id="executeProgram" class="dialogHiddenContent">
+    <div id="execute">
+    </div>
+    <div id="graph"><div id="graphValue"></div></div>
+    {call BlocklyGames.soy.ok /}
+  </div>
+{/template}
+
+
+/**
+ * Toolboxes for each level.
+ */
+{template .toolbox}
+<xml id="toolbox" style="display: none">
+  <category name="Logic">
+    <block type="controls_if"></block>
+    <block type="logic_compare"></block>
+    <block type="logic_operation"></block>
+    <block type="logic_negate"></block>
+    <block type="logic_boolean"></block>
+    <block type="logic_null"></block>
+    <block type="logic_ternary"></block>
+  </category>
+  <category name="Loops">
+    <block type="controls_repeat_ext">
+      <value name="TIMES">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_whileUntil"></block>
+    <block type="controls_for">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">10</field>
+        </block>
+      </value>
+      <value name="BY">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="controls_forEach"></block>
+    <block type="controls_flow_statements"></block>
+  </category>
+  <category name="Math">
+    <block type="math_number"></block>
+    <block type="math_arithmetic"></block>
+    <block type="math_single"></block>
+    <block type="math_trig"></block>
+    <block type="math_constant"></block>
+    <block type="math_number_property"></block>
+    <block type="math_change">
+      <value name="DELTA">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_round"></block>
+    <block type="math_on_list"></block>
+    <block type="math_modulo"></block>
+    <block type="math_constrain">
+      <value name="LOW">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="HIGH">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_random_int">
+      <value name="FROM">
+        <block type="math_number">
+          <field name="NUM">1</field>
+        </block>
+      </value>
+      <value name="TO">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+    </block>
+    <block type="math_random_float"></block>
+  </category>
+  <category name="Text">
+    <block type="text"></block>
+    <block type="text_join"></block>
+    <block type="text_append">
+      <value name="TEXT">
+        <block type="text"></block>
+      </value>
+    </block>
+    <block type="text_length"></block>
+    <block type="text_isEmpty"></block>
+    <block type="text_indexOf">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_charAt">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_getSubstring">
+      <value name="STRING">
+        <block type="variables_get">
+          <field name="VAR">text</field>
+        </block>
+      </value>
+    </block>
+    <block type="text_changeCase"></block>
+    <block type="text_trim"></block>
+    <block type="text_print"></block>
+    <block type="text_prompt_ext">
+      <value name="TEXT">
+        <block type="text"></block>
+      </value>
+    </block>
+  </category>
+  <category name="Lists">
+    <block type="lists_create_empty"></block>
+    <block type="lists_create_with"></block>
+    <block type="lists_repeat">
+      <value name="NUM">
+        <block type="math_number">
+          <field name="NUM">5</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_length"></block>
+    <block type="lists_isEmpty"></block>
+    <block type="lists_indexOf">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_getIndex">
+      <value name="VALUE">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_setIndex">
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+    <block type="lists_getSublist">
+      <value name="LIST">
+        <block type="variables_get">
+          <field name="VAR">list</field>
+        </block>
+      </value>
+    </block>
+  </category>
+  <category name="Colour">
+    <block type="colour_picker"></block>
+    <block type="colour_random"></block>
+    <block type="colour_rgb">
+      <value name="RED">
+        <block type="math_number">
+          <field name="NUM">100</field>
+        </block>
+      </value>
+      <value name="GREEN">
+        <block type="math_number">
+          <field name="NUM">50</field>
+        </block>
+      </value>
+      <value name="BLUE">
+        <block type="math_number">
+          <field name="NUM">0</field>
+        </block>
+      </value>
+    </block>
+    <block type="colour_blend">
+      <value name="COLOUR1">
+        <block type="colour_picker">
+          <field name="COLOUR">#ff0000</field>
+        </block>
+      </value>
+      <value name="COLOUR2">
+        <block type="colour_picker">
+          <field name="COLOUR">#3333ff</field>
+        </block>
+      </value>
+      <value name="RATIO">
+        <block type="math_number">
+          <field name="NUM">0.5</field>
+        </block>
+      </value>
+    </block>
+
+  </category>
+  <category name="Variables" custom="VARIABLE"></category>
+  <category name="Functions" custom="PROCEDURE"></category>
+  
+  <div class="ui footer vertical segment">
+    <div class="ui stackable center aligned page grid">
+      <div class="twenty wide column">
+        <div class="ui two column center aligned stackable grid">
+            <div class="column">
+                <h4 class="ui header">Sponsor</h4>
+                    <p><a class="item"><i class="big smile icon"></i><a href="http://semantic-ui.com/"> Semantic-UI</a></a></p>
+                    <p><a class="item"><i class="big cubes icon"></i><a href="https://scratch.mit.edu/"> Scratch</a></a></p>
+                    <p><a class="item"><i class="big google icon"></i><a href="https://developers.google.com/blockly/"> Blocky</a></a></p>
+            </div>
+            <div class="column">
+                <h4 class="ui header">Contact Information</h4>
+                    <p><a class="item"><i class="big facebook icon"></i> 兒童科技教育與電子玩具設計104春</a></p>
+                    <p><a class="item"><i class="big marker icon"></i> No.1, Daxue Rd., East Dist., Tainan City 701, Taiwan (R.O.C.)</a></p>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</xml>
+{/template}
+
+
+/**
+ * Readonly Blockly in an iframe.
+ */
+{template .readonly}
+  {call .messages /}
+  <div id="blockly"></div>
+{/template}

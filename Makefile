@@ -23,12 +23,13 @@ index-en:
 	$(SOY_COMPILER) --outputPathFormat appengine/index/generated/en/soy.js --srcs appengine/index/template.soy
 	python build-app.py index en
 
+startracker-en: common-en
+	$(SOY_COMPILER) --outputPathFormat appengine/startracker/generated/en/soy.js --srcs appengine/startracker/template.soy
+	python build-app.py startracker en
+
 puzzle-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/puzzle/generated/en/soy.js --srcs appengine/puzzle/template.soy
 	python build-app.py puzzle en
-
-pinball:common-en
-	$(SOY_COMPILER) --outputPathFormat appengine/pinball/generated/en/soy.js --srcs appengine/pinball/template.soy
 
 pinball-en: common-en
 	$(SOY_COMPILER) --outputPathFormat appengine/pinball/generated/en/soy.js --srcs appengine/pinball/template.soy
