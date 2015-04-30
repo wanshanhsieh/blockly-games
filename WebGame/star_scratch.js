@@ -56,18 +56,43 @@ $(document)
     ;
     setInterval(changeSides, 3000);
 
-    $("#ani").click(function(){
-      $("#evo").show();
-      $("#vol").hide();
-      $("#green").hide();
+    $("#button_evo").click(function(){
+      $("#scratch_evo").show();
+      $("#scratch_vol").hide();
+      $("#scratch_green").hide();
+      $("#scratch_dragon").hide();
+      $("#scratch_poke").hide();
+    });  
+
+    $("#button_vol").click(function(){
+      $("#scratch_evo").hide();
+      $("#scratch_vol").show();
+      $("#scratch_green").hide();
+      $("#scratch_dragon").hide();
+      $("#scratch_poke").hide();
     });
 
-    $("#game").click(function(){
-      $("#evo").hide();
-      $("#vol").show();
-      $("#green").show();
-    });
+    $("#button_green").click(function(){
+      $("#scratch_evo").hide();
+      $("#scratch_vol").hide();
+      $("#scratch_green").show();
+      $("#scratch_dragon").hide();
+      $("#scratch_poke").hide();
+    });  
 
-    
+    $("#button_dragon").click(function(){
+      $("#scratch_evo").hide();
+      $("#scratch_vol").hide();
+      $("#scratch_green").hide();
+      $("#scratch_dragon").show();
+      $("#scratch_poke").hide();
+    }); 
 
+    $("#button_poke").click(function(){
+      $("#scratch_evo").hide();
+      $("#scratch_vol").hide();
+      $("#scratch_green").hide();
+      $("#scratch_dragon").hide();
+      $("#scratch_poke").show();
+    });   
 });
