@@ -95,4 +95,5 @@ $(document)
       $("#scratch_dragon").hide();
       $("#scratch_poke").show();
     });   
+
 });
